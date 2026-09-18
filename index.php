@@ -1,0 +1,148 @@
+<?php
+$jsonData = file_get_contents('data/data.json');
+$data = json_decode($jsonData, true);
+$skillsData = $data['skills'];
+$projects = $data['projects'];
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARYA. - Software Engineer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <!-- Animated Ambient Background -->
+    <div class="bg-glow bg-glow-navy"></div>
+    <div class="bg-glow bg-glow-gold"></div>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar glass-panel-nav">
+        <div class="nav-brand">ARYA.</div>
+        <ul class="nav-links">
+            <li><a href="#about">ABOUT</a></li>
+            <li><a href="#skills">EXPERTISE</a></li>
+            <li><a href="#projects">WORK</a></li>
+            <li><a href="#contact" class="btn-outline btn-round">LET'S TALK &#8599;</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero">
+        <div class="container hero-container">
+            <div class="hero-text" data-aos="fade-right" data-aos-duration="1200">
+                <p class="greeting">HELLO, I'M MUHAMAD ARYA PRASEPTYA<span class="dot-indicator"></span></p>
+                <h1 class="huge-title">
+                    Crafted with<br>
+                    <span class="highlight-text">logic.</span><br>
+                    Designed with<br>
+                    <span class="highlight-text">purpose.</span>
+                </h1>
+                <p class="subtitle">Focused on building refined software solutions that feel natural to users and reliable under the hood.</p>
+                
+                <div class="hero-buttons">
+                    <!-- Pastikan file PDF CV ada di folder yang sama dengan index.php -->
+                    <a href="assets/cv.pdf" target="_blank" class="btn-cta">Download Resume &#8599;</a>
+                    <a href="#projects" class="btn-text">Explore my work &#8599;</a>
+                </div>
+            </div>
+            
+            <div class="hero-image" data-aos="fade-left" data-aos-duration="1200">
+                <div class="img-frame">
+                    <img src="assets/placeholder-user.jpg" alt="Muhamad Arya Praseptya">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" data-aos="fade-up">
+        <div class="container layout-card about-split">
+            <div class="about-left">
+                <span class="section-label">01 / ABOUT</span>
+            </div>
+            <div class="about-right">
+                <h2 class="huge-title-sm">I care about the details that make products <span class="highlight-text">feel right.</span></h2>
+                <p class="about-text">
+                    I'm a Computer Science graduate based in Indonesia, passionate about creating clean, useful, and accessible digital products. With experience in web and mobile apps development, machine learning, and UI/UX design, I enjoy the space where design meets deep technical engineering.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section (Categorized) -->
+    <section id="skills">
+        <div class="container layout-card about-split" style="margin-top: 50px;">
+            <div class="about-left" data-aos="fade-right">
+                <span class="section-label">02 / EXPERTISE</span>
+            </div>
+            <div class="about-right">
+                <div class="skills-container">
+                    <?php foreach($skillsData as $category => $items): ?>
+                        <div class="skill-category" data-aos="fade-up">
+                            <h3 class="category-title"><?= htmlspecialchars($category) ?></h3>
+                            <div class="skills-grid layout-grid-left">
+                                <?php foreach($items as $delay => $skill): ?>
+                                    <div class="skill-badge" data-aos="zoom-in" data-aos-delay="<?= $delay * 50 ?>">
+                                        <?= htmlspecialchars($skill) ?>
+                                    </div>
+                                <?php endforeach; ?>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="container">
+            <div class="about-split" style="margin-bottom: 40px;" data-aos="fade-right">
+                <div class="about-left">
+                    <span class="section-label">03 / SELECTED WORK</span>
+                </div>
+            </div>
+            <div class="projects-grid">
+                <?php foreach($projects as $index => $project): ?>
+                    <div class="project-card" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.2" data-aos="fade-up" data-aos-delay="<?= $index * 100 ?>">
+                        <div class="project-img-wrapper">
+                            <img src="<?= htmlspecialchars($project['image']) ?>" alt="<?= htmlspecialchars($project['title']) ?>" class="project-img">
+                        </div>
+                        <div class="project-info">
+                            <h3><?= htmlspecialchars($project['title']) ?></h3>
+                            <p><?= htmlspecialchars($project['description']) ?></p>
+                            <a href="<?= htmlspecialchars($project['link']) ?>" target="_blank" class="btn-outline btn-sm">View Source &#8599;</a>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" data-aos="fade-up">
+        <div class="container glass-panel layout-card text-center contact-panel">
+            <span class="section-label" style="display: block; margin-bottom: 20px;">04 / CONTACT</span>
+            <h2 class="huge-title-sm" style="margin-bottom: 20px;">Let's build something <span class="highlight-text">great.</span></h2>
+            <p>Interested in collaborating or discussing new opportunities?</p>
+            <div class="contact-links">
+                <a href="mailto:m.arya.praseptya@gmail.com" class="btn-cta">Email Me &#8599;</a>
+                <a href="https://linkedin.com/in/praseptyaa" target="_blank" class="btn-outline btn-round">LinkedIn</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; <?= date('Y') ?> Muhamad Arya Praseptya. Pakuan University Alumni.</p>
+    </footer>
+
+    <!-- Libraries JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.2/vanilla-tilt.min.js"></script>
+    <script src="assets/js/script.js"></script>
+</body>
+</html>
