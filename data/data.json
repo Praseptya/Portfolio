@@ -1,27 +1,42 @@
 {
     "skills": {
-        "Web & Backend": ["PHP", "Laravel", "MySQL", "JavaScript"],
+        "Web & Backend": ["PHP", "Laravel", "MySQL"],
         "Mobile & AI": ["Flutter", "Dart", "Python", "Machine Learning"],
         "Design & Tools": ["Figma", "UI/UX Design", "Git"]
     },
     "projects": [
         {
+            "title": "LingoJoy",
+            "initial": "L",
+            "short_desc": "Aplikasi latihan pelafalan berbasis speech recognition",
+            "role": "UI/UX & Machine Learning Developer",
+            "description": "Aplikasi mobile offline-first untuk melatih pelafalan bahasa Inggris. Menggabungkan Google ASR untuk pengenalan suara saat online dan model APC-LSTM on-device sebagai cadangan saat offline. Skor kemiripan dihitung dengan Levenshtein Distance sehingga umpan balik muncul seketika, lengkap dengan modul latihan terstruktur dan penyimpanan lokal SQLite.",
+            "year": "2026",
+            "tech_stack": ["Flutter", "Dart", "Python", "APC-LSTM", "Google ASR", "SQLite"],
+            "image_file": "assets/lingojoy-full.jpg",
+            "link": "https://github.com/Praseptya"
+        },
+        {
             "title": "Program Budgeting System",
-            "description": "Aplikasi web enterprise (Laravel & MySQL) untuk digitalisasi dan manajemen persetujuan anggaran produksi pertelevisian secara real-time.",
-            "link": "https://github.com/Praseptya",
-            "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=600"
+            "initial": "PB",
+            "short_desc": "Manajemen anggaran produksi televisi",
+            "role": "Full-Stack Developer",
+            "description": "Aplikasi web internal PT Media Televisi Indonesia untuk menggantikan pengajuan anggaran produksi yang sebelumnya manual. Menyediakan entri data terstruktur, pelacakan biaya, dan alur persetujuan bertingkat, dengan dashboard dan rincian pengeluaran yang bisa dipantau tiap tim produksi.",
+            "year": "2025",
+            "tech_stack": ["PHP", "Laravel", "MySQL", "Figma"],
+            "image_file": "assets/budgeting-full.jpg",
+            "link": "https://github.com/Praseptya"
         },
         {
-            "title": "Discorso - Social Media App",
-            "description": "Aplikasi mobile media sosial minimalis dengan fitur real-time feed, autentikasi, dan interaksi user menggunakan Flutter dan Firebase.",
-            "link": "https://github.com/Praseptya",
-            "image": "https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&q=80&w=600"
-        },
-        {
-            "title": "LingoJoy - AI Pronunciation",
-            "description": "Aplikasi offline-first bertenaga AI untuk belajar pelafalan bahasa menggunakan Google ASR dan model deep learning APC-LSTM.",
-            "link": "https://github.com/Praseptya",
-            "image": "https://images.unsplash.com/photo-1546410531-b4c4f9f743c6?auto=format&fit=crop&q=80&w=600"
+            "title": "Discorso",
+            "initial": "D",
+            "short_desc": "Mobile Social Media App",
+            "role": "Mobile Developer & UI/UX Designer",
+            "description": "Aplikasi media sosial minimalis dengan fitur real-time feed, autentikasi, dan interaksi pengguna. Dibangun dengan Flutter dan Firebase untuk manajemen data awan secara real-time, dilengkapi fitur dark mode dan moderasi konten.",
+            "year": "2025",
+            "tech_stack": ["Flutter", "Dart", "Firebase", "UI/UX"],
+            "image_file": "assets/discorso-full.jpg",
+            "link": "https://github.com/Praseptya"
         }
     ]
-}
+}   

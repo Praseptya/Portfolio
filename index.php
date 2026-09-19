@@ -108,15 +108,38 @@ $projects = $data['projects'];
             </div>
             <div class="projects-grid">
                 <?php foreach($projects as $index => $project): ?>
-                    <div class="project-card" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.2" data-aos="fade-up" data-aos-delay="<?= $index * 100 ?>">
-                        <div class="project-img-wrapper">
-                            <img src="<?= htmlspecialchars($project['image']) ?>" alt="<?= htmlspecialchars($project['title']) ?>" class="project-img">
-                        </div>
+                    <!-- Tambahan data-tilt untuk mempertahankan efek 3D Tilt -->
+                    <div class="project-card" data-aos="fade-up" data-aos-delay="<?= $index * 100 ?>">
+                        
+                        <!-- Area Gambar sebagai Link -->
+                        <a href="<?= htmlspecialchars($project['image_file']) ?>" target="_blank" class="project-img-link">
+                            <div class="project-img-wrapper">
+                                <span class="project-year"><?= htmlspecialchars($project['year']) ?></span>
+                                <h2 class="project-initial"><?= htmlspecialchars($project['initial']) ?></h2>
+                            </div>
+                        </a>
+                        
                         <div class="project-info">
                             <h3><?= htmlspecialchars($project['title']) ?></h3>
-                            <p><?= htmlspecialchars($project['description']) ?></p>
-                            <a href="<?= htmlspecialchars($project['link']) ?>" target="_blank" class="btn-outline btn-sm">View Source &#8599;</a>
+                            <h4 class="project-short-desc"><?= htmlspecialchars($project['short_desc']) ?></h4>
+                            <p class="project-role"><?= htmlspecialchars($project['role']) ?></p>
+                            
+                            <!-- Teks Deskripsi Rata Kiri Kanan -->
+                            <p class="project-description"><?= htmlspecialchars($project['description']) ?></p>
+                            
+                            <!-- Tags Teknologi -->
+                            <div class="project-tags">
+                                <?php foreach($project['tech_stack'] as $tech): ?>
+                                    <span class="tag"><?= htmlspecialchars($tech) ?></span>
+                                <?php endforeach; ?>
+                            </div>
+
+                            <!-- Tombol Source Code -->
+                            <div style="margin-top: auto; padding-top: 10px;">
+                                <a href="<?= htmlspecialchars($project['link']) ?>" target="_blank" class="btn-outline btn-sm">View Source &#8599;</a>
+                            </div>
                         </div>
+
                     </div>
                 <?php endforeach; ?>
             </div>

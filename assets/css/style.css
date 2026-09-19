@@ -44,7 +44,7 @@ body { background-color: var(--bg-dark); color: var(--text-primary); line-height
 .huge-title { font-size: 4.5rem; line-height: 1.05; font-weight: 600; letter-spacing: -2px; margin-bottom: 25px; color: #fff; }
 .huge-title-sm { font-size: 3rem; line-height: 1.1; font-weight: 500; letter-spacing: -1.5px; margin-bottom: 30px; color: #fff; }
 .highlight-text { color: var(--accent-gold); }
-.greeting { font-size: 0.85rem; letter-spacing: 2px; color: var(--text-secondary); margin-bottom: 20px; text-transform: uppercase; display: flex; align-items: center; gap: 10px; }
+.greeting { font-size: 1rem; letter-spacing: 2px; color: var(--text-secondary); margin-bottom: 20px; text-transform: uppercase; display: flex; align-items: center; gap: 10px; }
 .dot-indicator { width: 8px; height: 8px; background-color: var(--accent-gold); border-radius: 50%; display: inline-block; box-shadow: 0 0 10px var(--accent-gold); animation: pulse 2s infinite; }
 @keyframes pulse { 0% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(1.2); } 100% { opacity: 1; transform: scale(1); } }
 .subtitle { font-size: 1.15rem; color: var(--text-secondary); margin-bottom: 40px; max-width: 85%; font-weight: 300; }
@@ -84,14 +84,152 @@ body { background-color: var(--bg-dark); color: var(--text-primary); line-height
 .skill-badge { background: rgba(255, 255, 255, 0.05); padding: 10px 20px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); font-size: 0.95rem; transition: 0.3s; }
 .skill-badge:hover { background: rgba(212, 175, 55, 0.15); color: var(--accent-gold); transform: translateY(-3px); border-color: var(--accent-gold); }
 
-/* Projects & Contact */
-.projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
-.project-card { background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 20px; border-radius: 16px; transition: 0.3s; transform-style: preserve-3d; }
-.project-img-wrapper { margin-bottom: 20px; overflow: hidden; border-radius: 10px; transform: translateZ(20px); }
-.project-img { width: 100%; height: 220px; object-fit: cover; transition: 0.5s; filter: brightness(0.7); }
-.project-card:hover .project-img { filter: brightness(1); transform: scale(1.05); }
-.project-info h3 { font-size: 1.35rem; margin-bottom: 10px; font-weight: 600; }
-.project-info p { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 25px; font-weight: 300; }
+/* Projects Grid & Glassmorphism Card Layout */
+.projects-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); 
+    gap: 30px; 
+}
+
+.project-card { 
+    background: var(--glass-bg); 
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border); 
+    border-radius: 20px; 
+    display: flex;
+    flex-direction: column;
+    transition: border-color 0.4s ease, box-shadow 0.4s ease; 
+    transform-style: preserve-3d;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    will-change: transform; 
+}
+
+/* Hover Effect: Glowing Border khas Tema Dark-Gold */
+.project-card:hover {
+    border-color: rgba(212, 175, 55, 0.5);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 0 0 25px rgba(212, 175, 55, 0.15);
+}
+
+/* Area Gambar Interaktif */
+.project-img-link {
+    display: block;
+    text-decoration: none;
+    border-bottom: 1px solid var(--glass-border);
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    overflow: hidden; /* Pembatas ditaruh di sini */
+}
+
+.project-img-wrapper { 
+    height: 240px; 
+    position: relative;
+    background-color: rgba(26, 54, 93, 0.2); /* Sentuhan Navy khas tema */
+    background-image: repeating-linear-gradient(45deg, transparent, transparent 8px, rgba(255,255,255,0.02) 8px, rgba(255,255,255,0.02) 10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.4s ease;
+}
+
+.project-img-link:hover .project-img-wrapper {
+    background-color: rgba(26, 54, 93, 0.4);
+}
+
+.project-initial {
+    font-size: 5.5rem;
+    font-weight: 800;
+    color: rgba(212, 175, 55, 0.25); /* Muted Gold transparan */
+    letter-spacing: -2px;
+    transition: all 0.4s ease;
+}
+
+.project-img-link:hover .project-initial {
+    color: rgba(212, 175, 55, 0.5);
+    transform: scale(1.05);
+}
+
+.project-year {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(10, 10, 15, 0.7);
+    backdrop-filter: blur(8px);
+    color: var(--text-secondary);
+    padding: 5px 14px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    border: 1px solid var(--glass-border);
+    letter-spacing: 1px;
+}
+
+/* Informasi Teks Proyek */
+.project-info { 
+    padding: 30px; 
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    transform: translateZ(10px);
+}
+
+.project-info h3 { 
+    font-size: 1.5rem; 
+    color: #fff; 
+    margin-bottom: 6px; 
+    font-weight: 600; 
+}
+
+.project-short-desc {
+    color: var(--accent-gold);
+    font-size: 0.95rem;
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+.project-role {
+    color: #6b7280;
+    font-size: 0.85rem;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Teks Deskripsi Rata Kiri Kanan (Justify) */
+.project-description { 
+    color: var(--text-secondary); 
+    font-size: 0.92rem; 
+    line-height: 1.7; 
+    margin-bottom: 25px; 
+    font-weight: 300; 
+    text-align: justify; 
+    text-justify: inter-word;
+}
+
+/* Badge Tags Teknologi */
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 25px;
+}
+
+.tag {
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--text-primary);
+    padding: 5px 14px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    border: 1px solid var(--glass-border);
+    transition: all 0.3s ease;
+}
+
+.tag:hover {
+    background: rgba(212, 175, 55, 0.15);
+    color: var(--accent-gold);
+    border-color: rgba(212, 175, 55, 0.3);
+}
+
+/* Contact Links (Jangan ditimpa, ini aslinya) */
 .contact-links { margin-top: 40px; display: flex; justify-content: center; gap: 20px; align-items: center; }
 footer { text-align: center; padding: 40px; font-size: 0.85rem; color: #555; margin-top: 50px; border-top: 1px solid var(--glass-border); }
 
@@ -132,10 +270,21 @@ footer { text-align: center; padding: 40px; font-size: 0.85rem; color: #555; mar
     .hero-buttons { flex-direction: column; gap: 15px; width: 100%; }
     .btn-cta { width: 100%; text-align: center; }
     
-    /* Project Cards & Grid menyesuaikan penuh */
-    .projects-grid { grid-template-columns: 1fr; gap: 25px; }
-    .img-frame { max-width: 250px; }
-    
+    /* Project Cards & Grid menyesuaikan penuh di HP */
+    .projects-grid { 
+        grid-template-columns: 1fr; 
+        gap: 25px; 
+    }
+    .project-info { 
+        padding: 24px 20px; 
+    }
+    .project-img-wrapper { 
+        height: 190px; 
+    }
+    .project-initial { 
+        font-size: 4rem; 
+    }
+
     /* Contact Links */
     .contact-links { flex-direction: column; width: 100%; gap: 15px; }
     .contact-links a { width: 100%; text-align: center; }
