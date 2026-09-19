@@ -10,6 +10,7 @@ $projects = $data['projects'];
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ARYA. - Software Engineer</title>
+    <link rel="icon" type="image/png" href="assets/favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
@@ -21,7 +22,7 @@ $projects = $data['projects'];
 
     <!-- Navigation Bar -->
     <nav class="navbar glass-panel-nav">
-        <div class="nav-brand">ARYA.</div>
+        <div class="nav-brand">ARYA<span class="highlight-text">.</span></div>
         <ul class="nav-links">
             <li><a href="#about">ABOUT</a></li>
             <li><a href="#skills">EXPERTISE</a></li>
@@ -103,28 +104,31 @@ $projects = $data['projects'];
         <div class="container">
             <div class="about-split" style="margin-bottom: 40px;" data-aos="fade-right">
                 <div class="about-left">
-                    <span class="section-label">03 / SELECTED WORK</span>
+                    <span class="section-label">03 / PROJECTS</span>
                 </div>
             </div>
             <div class="projects-grid">
                 <?php foreach($projects as $index => $project): ?>
-                    <!-- Tambahan data-tilt untuk mempertahankan efek 3D Tilt -->
                     <div class="project-card" data-aos="fade-up" data-aos-delay="<?= $index * 100 ?>">
                         
-                        <!-- Area Gambar sebagai Link -->
-                        <a href="<?= htmlspecialchars($project['image_file']) ?>" target="_blank" class="project-img-link">
-                            <div class="project-img-wrapper">
-                                <span class="project-year"><?= htmlspecialchars($project['year']) ?></span>
+                        <!-- Area Display Gambar Proyek -->
+                        <div class="project-img-wrapper">
+                            <span class="project-year"><?= htmlspecialchars($project['year']) ?></span>
+                            
+                            <?php if(!empty($project['image_file']) && file_exists($project['image_file'])): ?>
+                                <!-- Menampilkan file gambar dari path image_file -->
+                                <img src="<?= htmlspecialchars($project['image_file']) ?>" alt="<?= htmlspecialchars($project['title']) ?>" class="project-img">
+                            <?php else: ?>
+                                <!-- Fallback ke tampilan Inisialisasi jika file gambar belum ada/diunggah -->
                                 <h2 class="project-initial"><?= htmlspecialchars($project['initial']) ?></h2>
-                            </div>
-                        </a>
+                            <?php endif; ?>
+                        </div>
                         
                         <div class="project-info">
                             <h3><?= htmlspecialchars($project['title']) ?></h3>
                             <h4 class="project-short-desc"><?= htmlspecialchars($project['short_desc']) ?></h4>
                             <p class="project-role"><?= htmlspecialchars($project['role']) ?></p>
                             
-                            <!-- Teks Deskripsi Rata Kiri Kanan -->
                             <p class="project-description"><?= htmlspecialchars($project['description']) ?></p>
                             
                             <!-- Tags Teknologi -->
